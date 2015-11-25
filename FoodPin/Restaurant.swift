@@ -22,6 +22,8 @@ class Restaurant {
     
     var phoneNumber:String
     
+    var rating = "rating"
+    
     init(name:String, type:String, location:String, phoneNumber:String,image:String, isVisited:Bool) {
         
         self.name = name;

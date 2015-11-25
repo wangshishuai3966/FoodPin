@@ -10,6 +10,7 @@ import UIKit
 
 class RestaurantDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var ratingButton: UIButton!
     
     @IBOutlet weak var restaurantImageView: UIImageView!
     
@@ -24,6 +25,8 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
         // Do any additional setup after loading the view.
         
         restaurantImageView.image=UIImage(named: restaurant.image!)
+        
+        ratingButton.setImage(UIImage(named: restaurant.rating), forState: UIControlState.Normal)
         
         tableView.backgroundColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 0.2)
         
@@ -92,6 +95,15 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
     }
     
     @IBAction func close(segue:UIStoryboardSegue){
+        
+        if let reviewViewController = segue.sourceViewController as? ReviewViewController{
+            if let rating = reviewViewController.rating{
+                
+                restaurant.rating = rating
+                
+                ratingButton.setImage(UIImage(named: rating), forState: UIControlState.Normal)
+            }
+        }
         
     }
     
